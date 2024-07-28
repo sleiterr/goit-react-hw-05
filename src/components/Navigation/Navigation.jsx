@@ -1,3 +1,5 @@
+// Navigation.jsx
+
 import { NavLink } from "react-router-dom";
 import styles from "./Navigation.module.css";
 
@@ -5,16 +7,13 @@ const Navigation = () => (
   <nav className={styles.nav}>
     <NavLink
       to="/"
-      exact
-      className={styles.link}
-      activeClassName={styles.active}
+      className={({ isActive }) => (isActive ? styles.active : styles.link)}
     >
       Home
     </NavLink>
     <NavLink
       to="/movies"
-      className={styles.link}
-      activeClassName={styles.active}
+      className={({ isActive }) => (isActive ? styles.active : styles.link)}
     >
       Movies
     </NavLink>

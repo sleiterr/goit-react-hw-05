@@ -1,4 +1,6 @@
-import axios from 'zxios';
+// tmdbApi.js
+
+import axios from 'axios';
 
 const API_KEY = "ca82fe14c900979050efbda0f1b9589e";
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -6,7 +8,7 @@ const BASE_URL = "https://api.themoviedb.org/3";
 const api = axios.create({
   baseURL: BASE_URL,
   headers: {
-    Autorization: `Bearer ${API_KEY}`,
+    Authorization: `Bearer ${API_KEY}`,
   },
 });
 
