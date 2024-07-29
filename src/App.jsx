@@ -4,8 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {Suspense, lazy } from 'react';
 import Navigation from './components/Navigation/Navigation';
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-// Implement Error
-import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import './index.css';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -17,7 +15,6 @@ const MovieReviews = lazy(() => import('./components/MovieReviews/MovieReviews')
 function App() {
   return (
     <Router>
-      <ErrorBoundary>
         <Navigation />
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
@@ -30,7 +27,6 @@ function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
-      </ErrorBoundary>
     </Router>
   );
 }

@@ -2,7 +2,9 @@
 
 import axios from 'axios';
 
-const API_KEY = "ca82fe14c900979050efbda0f1b9589e";
+const API_KEY =
+  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxODM4NmM0ODU3MGZkMzJjMDhhYzYwYTM2ZjFmNjM1ZiIsIm5iZiI6MTcyMjI2OTU1NS4xOTM3MTcsInN1YiI6IjY2YTJiNjgyZTFjMTUyYTFiNTcyOGNmNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nIUhUXm_n2zp5snqFYX_9rV0jZE2jFQTEej78FW69YA";
+  
 const BASE_URL = "https://api.themoviedb.org/3";
 
 const api = axios.create({

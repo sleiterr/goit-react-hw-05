@@ -1,8 +1,9 @@
 .nav {
   display: flex;
-  gap: 20px;
-  padding: 10px;
-  background-color: #333;
+  gap: 30px;
+  padding: 25px;
+  background-color: #f7f7f7;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 };
 
 .link {
