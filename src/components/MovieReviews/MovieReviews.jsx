@@ -1,6 +1,8 @@
+// MovieReviews.jsx
+
 import { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
-import { fetchMovieReviews } from '../../api/tmdbApi';
+import { useParams } from "react-router-dom";
+import { fetchMovieReviews } from "../../api/tmdbApi";
 import styles from "./MovieReviews.module.css";
 
 const MovieReviews = () => {
@@ -28,7 +30,6 @@ const MovieReviews = () => {
       )}
     </div>
   );
-
 };
 
 export default MovieReviews;

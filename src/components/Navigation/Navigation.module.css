@@ -6,13 +6,18 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 };
 
-.link {
-  color: #fff;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: bold;
-};
+/* Navigation.module.css */
+
+
+.link:hover {
+  color: #0056b3;
+}
 
 .active {
-  color: #ff0;
+  font-weight: bold;
+}
+
+.link {
+  font-size: 16px;
+  text-decoration: none;
 }
