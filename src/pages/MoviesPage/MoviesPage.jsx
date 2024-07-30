@@ -1,29 +1,48 @@
-import { useState } from "react";
-import { searchMovies } from '../../api/tmdbApi';
-import MovieList from '../../components/MovieList/MovieList';
-import styles from './MoviesPage.module.css';
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { searchMovies } from "../../api/tmdbApi";
+import MovieList from "../../components/MovieList/MovieList";
+import styles from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
-  const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [query, setQuery] = useState(searchParams.get("query") || "");
 
-  const handleChange = (e) => setQuery(e.target.value);
+  useEffect(() => {
+    const loadMovies = async () => {
+      try {
+        const result = await searchMovies(query);
+        setMovies(result);
+      } catch (error) {
+        console.error("Error fetching movies:", error);
+      }
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    searchMovies(query).then(setMovies);
+    loadMovies();
+  }, [query]);
+
+  const handleSearch = () => {
+    setSearchParams({ query });
   };
-  
+
   return (
-    <div className={styles.container }>
-      <form onSubmit={handleSubmit} className={styles.form} >
-        <input type="text" value={query} onChange={handleChange} className={ styles.input} />
-        <button type="submit" className={ styles.button}>Search</button>
-    </form>
-    <MovieList movies={movies}/>
+    <div>
+      <div className={styles.searchContainer}>
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search for movies..."
+          className={styles.searchInput}
+        />
+        <button onClick={handleSearch} className={styles.searchButton}>
+          Search
+        </button>
+      </div>
+      <MovieList movies={movies} />
     </div>
   );
-
 };
 
 export default MoviesPage;

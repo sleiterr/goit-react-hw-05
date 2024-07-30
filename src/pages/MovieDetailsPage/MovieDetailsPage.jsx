@@ -1,6 +1,6 @@
 // MovieDetailsPage.jsx
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate, Link, Outlet } from "react-router-dom";
 import { fetchMovieDetails } from "../../api/tmdbApi";
 import styles from "./MovieDetailsPage.module.css";
@@ -10,15 +10,23 @@ const MovieDetailsPage = () => {
   const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
 
+  // useRef для зберігання location.state
+  const fromLocation = useRef(location.state?.from || '/')
+
   useEffect(() => {
     fetchMovieDetails(movieId).then(setMovie);
   }, [movieId]);
 
   if (!movie) return null;
 
+  // Функція для обробки переходу назад
+  const handleGoBack = () => {
+    navigate(fromLocation.current);
+  };
+
   return (
     <div className={styles.container}>
-      <button onClick={() => navigate(-1)} className={styles.button}>
+      <button onClick={handleGoBack} className={styles.button}>
         Go back
       </button>
       <div className={styles.movieDetails}>
