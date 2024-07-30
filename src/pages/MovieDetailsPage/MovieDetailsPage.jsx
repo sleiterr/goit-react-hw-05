@@ -1,21 +1,24 @@
 // MovieDetailsPage.jsx
 
 import { useState, useEffect, useRef } from "react";
-import { useParams, useNavigate, Link, Outlet } from "react-router-dom";
+import { useParams, useNavigate, Link, Outlet, useLocation } from "react-router-dom";
 import { fetchMovieDetails } from "../../api/tmdbApi";
 import styles from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const [movie, setMovie] = useState(null);
 
   // useRef для зберігання location.state
-  const fromLocation = useRef(location.state?.from || '/')
+  const fromLocation = useRef(location.state?.from || "/");
 
   useEffect(() => {
+    fromLocation.current = location.state?.from || "/";
+    // Завантажуємо деталі фільму
     fetchMovieDetails(movieId).then(setMovie);
-  }, [movieId]);
+  }, [movieId, location.state]); // Додаємо location.state до залежностей
 
   if (!movie) return null;
 
